@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:composition template="_template.xhtml">
+	
+		<f:metadata>
+			<f:viewParam name="autorId" value="#{responsavelBean.responsavelId}" />
+			<f:viewAction action="#{responsavelBean.carregarResponsavelPelaId}" if="#{param.responsavelId != null}" />
+		</f:metadata>
+
+		<ui:define name="titulo">
+				<p:outputPanel>Registra Novo Responsável</p:outputPanel>
+		</ui:define>
+
+		<ui:define name="conteudo">
+			<h:form id="responsavel">
+				<p:fieldset legend="Dados do Responsavel">
+					<h:panelGrid columns="3">
+
+						<p:outputLabel value="Nome:" for="nome" />
+						<p:inputText id="nome" value="#{responsavelBean.responsavel.nome}"
+							required="true">
+							<f:validateLength minimum="5" />
+							<f:ajax event="blur" render="messageNome" />
+						</p:inputText>
+						<p:message for="nome" id="messageNome" />
+						
+						<p:outputLabel value="Email:" for="email" />
+						<p:inputText id="email" value="#{responsavelBean.responsavel.email}" required="true" validatorMessage="Email inválido">
+							<f:attribute name="type" value="email" />
+							<f:passThroughAttribute name="placeholder" value="Email do responsavel" />
+							<f:validateRegex pattern=".+@.+" />
+							<f:ajax event="blur" render="messageEmail" />
+						</p:inputText> 
+
+						<p:message for="email" id="messageEmail" />
+
+						<p:commandButton value="Gravar" action="#{responsavelBean.gravar}" process="@form" update="@form :formTabelaResponsaveis" />
+					</h:panelGrid>
+				</p:fieldset>
+			</h:form>
+			
+			<h:form id="formTabelaResponsaveis">
+				<p:dataList value="#{responsavelBean.responsaveis}" var="responsavel" type="definition">
+					<f:facet name="header">
+						Responsáveis
+					</f:facet>
+					
+					<p:commandButton icon="fa fa-fw fa-edit" update=":responsavel">
+						<f:setPropertyActionListener value="#{responsavel}" target="#{responsavelBean.responsavel}" />
+					</p:commandButton>
+					
+					<p:commandButton icon="fa fa-fw fa-remove" action="#{responsavelBean.remover(reponsavel)}" 
+						update="@form" />
+						
+					#{responsavel.nome} - #{responsavel.email}
+				</p:dataList>
+			</h:form>		
+		</ui:define>
+
+	</ui:composition>
+
+</html>
