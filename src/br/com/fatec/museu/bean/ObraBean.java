@@ -10,10 +10,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
-import br.com.fatec.museu.dao.DAO;
 import br.com.fatec.museu.dao.ObraDAO;
-import br.com.fatec.museu.modelo.Responsavel;
 import br.com.fatec.museu.modelo.Obra;
+import br.com.fatec.museu.modelo.Responsavel;
 
 @ManagedBean
 @ViewScoped
@@ -49,7 +48,7 @@ public class ObraBean implements Serializable {
 	}
 
 	public List<Responsavel> getResponsaveis() {
-		return new DAO<Responsavel>(Responsavel.class).listaTodos();
+		return new ResponsavelDAO().listaTodos();
 	}
 
 	public List<Responsavel> getResponsaveisDaObra() {
@@ -61,7 +60,7 @@ public class ObraBean implements Serializable {
 	}
 	
 	public void gravarResponsavel() {
-		Responsavel responsavel = new DAO<Responsavel>(Responsavel.class).buscaPorId(this.responsavelId);
+		Responsavel responsavel = new ResponsavelDAO().buscaPorId(this.responsavelId);
 		this.obra.adicionaObra(responsavel);
 	}
 
