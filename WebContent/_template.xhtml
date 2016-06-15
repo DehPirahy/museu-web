@@ -11,15 +11,9 @@
 		<div id="cabecalho">
 				<h:form rendered="#{usuarioLogado != null}">	
 					<p:tabMenu activeIndex="0">
-					    <p:menuitem value="Obras" action="obra?faces-redirect=true" icon="ui-icon-pencil">
-					        <f:param name="i" value="0" />
-					    </p:menuitem>
-					    <p:menuitem value="Responsável" action="responsavel?faces-redirect=true" icon="ui-icon-pencil">
-					        <f:param name="i" value="0" />
-					    </p:menuitem>
-					    <p:menuitem value="Logout" action="#{loginBean.deslogar}" icon="ui-icon-person">
-					        <f:param name="i" value="0" />
-					    </p:menuitem>
+					    <p:menuitem value="Obras" action="obra?faces-redirect=true" icon="ui-icon-pencil"></p:menuitem>
+					    <p:menuitem value="Responsável" action="responsavel?faces-redirect=true" icon="ui-icon-pencil"></p:menuitem>
+					    <p:menuitem value="Logout" action="#{loginBean.deslogar}" icon="ui-icon-person"></p:menuitem>
 					</p:tabMenu>
 				</h:form>
 				<h:form rendered="#{usuarioLogado != null}" style="position:absolute; right: 10px">
