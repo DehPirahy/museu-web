@@ -85,7 +85,7 @@
 					<p:dataTable value="#{obraBean.obras}" var="obra" id="tabelaObras" 
 						paginator="true" rows="5">
 						
-						<f:facet name="header">Livros</f:facet>
+						<f:facet name="header">Obras</f:facet>
 						<p:column headerText="Nome" sortBy="#{obra.nome}" 
 							filterBy="#{obra.nome}" filterMatchMode="startsWith">
 							<h:outputText value="#{obra.nome}" />

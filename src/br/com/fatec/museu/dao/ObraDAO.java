@@ -3,6 +3,9 @@ package br.com.fatec.museu.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import br.com.fatec.museu.modelo.Obra;
 
@@ -36,10 +39,17 @@ public class ObraDAO {
 	}
 
 	public List<Obra> listaTodos() {
-		List<Obra> lista = em.createQuery("select o from Obra o order by o.nome", Obra.class).getResultList();
-		em.close();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Obra> query = builder.createQuery(Obra.class);
+        Root<Obra> from = query.from(Obra.class);
+        query.select(from).orderBy(builder.asc(from.get("nome")));
+        List<Obra> lista = em.createQuery(query).getResultList();
+        em.close();
 		return lista;
 	}
+	
+	
+	
 
 	public Obra buscaPorId(Integer id) {
 		Obra obra = em.find(Obra.class, id);

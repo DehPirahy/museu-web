@@ -19,7 +19,7 @@
 			<h:form id="login">
 				<p:fieldset legend="Login">
 					<h:panelGrid columns="3">
-
+					
 						<p:outputLabel value="Email:" for="email" />
 						<p:inputText id="email" value="#{loginBean.usuario.email}" required="true">
 							<f:passThroughAttribute name="type" value="email" />
@@ -34,6 +34,7 @@
 						<p:commandButton value="Efetue Login" action="#{loginBean.efetuaLogin}" update="@form" process="@form" />
 					</h:panelGrid>
 				</p:fieldset>
+						<label>Utilize login: teste@teste e senha: teste</label>	
 			</h:form>
 		</ui:define>
 

@@ -8,7 +8,7 @@ import javax.faces.event.PhaseListener;
 
 import br.com.fatec.museu.modelo.Usuario;
 
-public class Autorizador implements PhaseListener {
+public class ValidaLogin implements PhaseListener {
 
 	private static final long serialVersionUID = 1L;
 

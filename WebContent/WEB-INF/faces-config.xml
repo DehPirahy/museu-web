@@ -7,8 +7,8 @@
 
 
 	<lifecycle>
-		<phase-listener>br.com.fatec.museu.util.Autorizador</phase-listener>
-		<phase-listener>br.com.fatec.museu.util.LogPhaseListener</phase-listener>
+		<phase-listener>br.com.fatec.museu.util.ValidaLogin</phase-listener>
+		<phase-listener>br.com.fatec.museu.util.CicloDeVidaJSF</phase-listener>
 	</lifecycle>
 
 </faces-config>
